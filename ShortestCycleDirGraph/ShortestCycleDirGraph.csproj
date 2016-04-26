@@ -70,10 +70,59 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Alg\Alg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Disp\Display.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Input\AdjMatrix.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Input\EdgeSet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Input\IncMatrix.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Input\Input.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Input\List.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Settings\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="Pages\Alg\Alg.xaml.cs">
+      <DependentUpon>Alg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Disp\Display.xaml.cs">
+      <DependentUpon>Display.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Input\AdjMatrix.xaml.cs">
+      <DependentUpon>AdjMatrix.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Input\EdgeSet.xaml.cs">
+      <DependentUpon>EdgeSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Input\IncMatrix.xaml.cs">
+      <DependentUpon>IncMatrix.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Input\Input.xaml.cs">
+      <DependentUpon>Input.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Input\List.xaml.cs">
+      <DependentUpon>List.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -99,11 +148,19 @@
     <Compile Include="Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Summary.xaml.cs">
+      <DependentUpon>Summary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="Pages\Summary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
