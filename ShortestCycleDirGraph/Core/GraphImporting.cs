@@ -2,7 +2,7 @@
 
 namespace ShortestCycleDirGraph.Core
 {
-    public class GrapthImporting
+    public class GraphImporting
     {
         // TODO: generic values
         // checked
@@ -27,7 +27,7 @@ namespace ShortestCycleDirGraph.Core
         public static Graph<int> FromIncMatrix(sbyte[,] incMatrix)
         {
             // invalid form of matrix
-            if (!Matrix<int>.checkValidIncMatrix(incMatrix)) incMatrix = Matrix<sbyte>.Transpose(incMatrix);
+            if (!Matrix<int>.CheckValidIncMatrix(incMatrix)) incMatrix = Matrix<sbyte>.Transpose(incMatrix);
 
             var graph = new Graph<int>();
             for (int i = 0; i < incMatrix.GetLength(0); i++) { graph.VertexSet.Add(new Vertex<int>(i + 1)); }

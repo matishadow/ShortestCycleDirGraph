@@ -20,7 +20,7 @@
             return transposed;
         }
 
-        public static bool checkValidIncMatrix(sbyte[,] m)
+        public static bool CheckValidIncMatrix(sbyte[,] m)
         {
             bool valid = true;
             bool posOne = false, negOne = false;

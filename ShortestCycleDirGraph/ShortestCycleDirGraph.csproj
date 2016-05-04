@@ -67,7 +67,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Core\Graph.cs" />
-    <Compile Include="Core\GrapthImporting.cs" />
+    <Compile Include="Core\GraphExporting.cs" />
+    <Compile Include="Core\GraphImporting.cs" />
     <Compile Include="Core\Matrix.cs" />
     <Compile Include="Core\Vertex.cs" />
     <Compile Include="MainWindow.xaml.cs">
