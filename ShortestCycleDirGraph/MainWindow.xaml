@@ -17,7 +17,6 @@
                 <mui:Link DisplayName="Wielkość grafu" Source="/Pages/Input/Input.xaml" />
                 <mui:Link DisplayName="Macierz sąsiedztwa" Source="/Pages/Input/AdjMatrix.xaml" />
                 <mui:Link DisplayName="Macierz incydencji" Source="/Pages/Input/IncMatrix.xaml" />
-                <mui:Link DisplayName="Lista dowiązaniowa" Source="/Pages/Input/List.xaml" />
                 <mui:Link DisplayName="Zbiór krawędzi" Source="/Pages/Input/EdgeSet.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>

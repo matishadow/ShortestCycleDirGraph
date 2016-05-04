@@ -9,8 +9,19 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <TextBlock Text="BASIC PAGE" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Content goesssssss here" />
+                <TextBlock Text="Wprowadź dane dotyczące grafu" Style="{StaticResource Heading2}" />
+              
+
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                    <TextBlock Text="Liczba wierzchołków:" RenderTransformOrigin="0.5,0.5" Height="19" Width="134" HorizontalAlignment="Left" Margin="0" />
+                    <TextBox x:Name="TbVertex" Height="23" TextWrapping="Wrap" Width="36" HorizontalAlignment="Left" Margin="0" x:FieldModifier="public"  />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="Liczba krawędzi:" RenderTransformOrigin="0.5,0.5" Height="19" Width="134" HorizontalAlignment="Left" />
+                    <TextBox x:Name="TbEdge" Height="23" TextWrapping="Wrap" Width="36" HorizontalAlignment="Left" x:FieldModifier="public"  />
+                </StackPanel>
+
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

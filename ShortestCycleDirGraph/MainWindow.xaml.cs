@@ -21,9 +21,15 @@ namespace ShortestCycleDirGraph
     /// </summary>
     public partial class MainWindow : ModernWindow
     {
+
+
         public MainWindow()
         {
             InitializeComponent();
+
+            
         }
+
+       
     }
 }

@@ -99,10 +99,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Input\List.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Settings\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,9 +120,6 @@
     </Compile>
     <Compile Include="Pages\Input\Input.xaml.cs">
       <DependentUpon>Input.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Input\List.xaml.cs">
-      <DependentUpon>List.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Settings\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
