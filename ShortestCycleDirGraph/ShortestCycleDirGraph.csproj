@@ -67,6 +67,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Core\Graph.cs" />
+    <Compile Include="Core\GrapthImporting.cs" />
+    <Compile Include="Core\Matrix.cs" />
     <Compile Include="Core\Vertex.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -162,9 +164,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
