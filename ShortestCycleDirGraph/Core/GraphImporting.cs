@@ -52,7 +52,8 @@ namespace ShortestCycleDirGraph.Core
         {
             var graph = new Graph<int>();
 
-            var edges = Regex.Replace(edgeSet, " ", "").Split(',');
+            var edge1 = Regex.Replace(edgeSet, "\n", ""); //TODO: simplify
+            var edges = Regex.Replace(edge1, " ", "").Split(',');
 
             foreach (string t1 in edges)
             {

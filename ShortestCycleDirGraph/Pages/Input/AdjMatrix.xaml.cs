@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
+using ShortestCycleDirGraph.Core;
 using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
 using NavigatingCancelEventArgs = FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs;
 using NavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs;
@@ -43,23 +44,71 @@ namespace ShortestCycleDirGraph.Pages.Input
             {
                 AdjTitleText.Text = "Wprowadź macierz sąsiedztwa";
 
+                DrawTextBoxes();
+            }
+        }
 
-                
-                for (int i = 0; i < Input.VertexCount; i++)
+        private void DrawTextBoxes()
+        {
+            for (int i = 0; i < Input.VertexCount; i++)
+            {
+                var sp = new StackPanel
                 {
-                    var sp = new StackPanel
-                    {
-                        Orientation = Orientation.Horizontal,
-                        Margin = new Thickness(0, 0, 0, 10)
-                    };
+                    Orientation = Orientation.Horizontal,
+                    Margin = new Thickness(0, 0, 0, 10)
+                };
 
-                    for (int j = 0; j < Input.VertexCount; j++)
-                    {
-                        var tb1 = new TextBox { Width = 30, Margin = new Thickness(0, 0, 10, 0) };
-                        sp.Children.Add(tb1);
-                    }
-                    AdjMatrixBoxes.Children.Add(sp);
+                for (int j = 0; j < Input.VertexCount; j++)
+                {
+                    var tb1 = new TextBox { Width = 30, Margin = new Thickness(0, 0, 10, 0) };
+                    sp.Children.Add(tb1);
                 }
+                AdjMatrixBoxes.Children.Add(sp);
+            }
+        }
+
+        private void ImportGraph()
+        {
+            try
+            {
+                var adjMatrix = new sbyte[Input.VertexCount, Input.VertexCount];
+
+                int i = 0;
+                foreach (StackPanel stackPanel in AdjMatrixBoxes.Children)
+                {
+                    int j = 0;
+                    foreach (TextBox textBox in stackPanel.Children)
+                    {
+                        adjMatrix[i, j] = sbyte.Parse(textBox.Text);
+                        j++;
+                    }
+                    i++;
+                }
+
+                Input.Graph = GraphImporting.FromAdjMatrix(adjMatrix);
+                Input.VertexCount = Input.Graph.VertexSet.Count;
+                Input.EdgeCount = Input.Graph.EdgeCount;
+            }
+            catch (Exception)
+            {
+                //TODO fill it
+            }
+        }
+
+        private void ExportGraph()
+        {
+            var adjMatrix = GraphExporting.ToAdjMatrix(Input.Graph);
+
+            int i = 0;
+            foreach (StackPanel stackPanel in AdjMatrixBoxes.Children)
+            {
+                int j = 0;
+                foreach (TextBox textBox in stackPanel.Children)
+                {
+                    textBox.Text = Convert.ToString(adjMatrix[i, j]);                   
+                    j++;
+                }
+                i++;
             }
         }
 
@@ -70,12 +119,19 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
-            
+            ImportGraph();
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            Reload();
+            if (Input.Graph != null)
+            {
+                ExportGraph();
+            }
+            else
+            {
+                Reload();
+            }
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)

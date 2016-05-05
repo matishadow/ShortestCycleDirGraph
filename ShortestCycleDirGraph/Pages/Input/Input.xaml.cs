@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
+using ShortestCycleDirGraph.Core;
 using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
 using NavigatingCancelEventArgs = FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs;
 using NavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs;
@@ -24,6 +25,8 @@ namespace ShortestCycleDirGraph.Pages.Input
     /// </summary>
     public partial class Input : UserControl, IContent
     {
+        public static Graph<int> Graph { get; set; }
+
         private static int _edgeCount;
         private static int _vertexCount;
 
@@ -57,12 +60,14 @@ namespace ShortestCycleDirGraph.Pages.Input
           
             int.TryParse(TbVertex.Text, out _vertexCount);
             int.TryParse(TbEdge.Text, out _edgeCount);
-            
+            if (Graph != null && (Graph.VertexSet.Count != _vertexCount || Graph.EdgeCount != _edgeCount)) Graph = null;
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            
+            if (Input.Graph == null) return;
+            TbVertex.Text = Input.Graph.VertexSet.Count.ToString();
+            TbEdge.Text = Input.Graph.EdgeCount.ToString();
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)

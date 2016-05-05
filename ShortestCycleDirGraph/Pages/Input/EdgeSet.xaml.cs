@@ -12,17 +12,70 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows;
+using ShortestCycleDirGraph.Core;
+using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
+using NavigatingCancelEventArgs = FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs;
+using NavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs;
 
 namespace ShortestCycleDirGraph.Pages.Input
 {
     /// <summary>
     /// Interaction logic for EdgeSet.xaml
     /// </summary>
-    public partial class EdgeSet : UserControl
+    public partial class EdgeSet : UserControl, IContent
     {
         public EdgeSet()
         {
             InitializeComponent();
+        }
+
+        private void ExportGraph()
+        {
+            string edgeSet = GraphExporting.ToEdgeSet(Input.Graph);
+
+            var edgeTextBox = EdgeSetControl;
+            edgeTextBox.Document.Blocks.Clear();
+            edgeTextBox.Document.Blocks.Add(new Paragraph(new Run(edgeSet)));
+        }
+
+        public void ImportGraph()
+        {
+            try
+            {
+                string edgeSet = new TextRange(EdgeSetControl.Document.ContentStart, EdgeSetControl.Document.ContentEnd).Text;
+
+                Input.Graph = GraphImporting.FromEdgeSet(edgeSet);
+                Input.VertexCount = Input.Graph.VertexSet.Count;
+                Input.EdgeCount = Input.Graph.EdgeCount;
+            }
+            catch (Exception)
+            {
+                //TODO: do shit
+            }
+        }
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+            
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            ImportGraph();
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (Input.Graph != null)
+            {
+                ExportGraph();
+            }
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            
         }
     }
 }
