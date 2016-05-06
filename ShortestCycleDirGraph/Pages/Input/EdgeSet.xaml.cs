@@ -32,7 +32,7 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         private void ExportGraph()
         {
-            string edgeSet = GraphExporting.ToEdgeSet(Input.Graph);
+            string edgeSet = GraphExporting.ToEdgeSet(Models.GraphModel.Graph);
 
             var edgeTextBox = EdgeSetControl;
             edgeTextBox.Document.Blocks.Clear();
@@ -45,9 +45,9 @@ namespace ShortestCycleDirGraph.Pages.Input
             {
                 string edgeSet = new TextRange(EdgeSetControl.Document.ContentStart, EdgeSetControl.Document.ContentEnd).Text;
 
-                Input.Graph = GraphImporting.FromEdgeSet(edgeSet);
-                Input.VertexCount = Input.Graph.VertexSet.Count;
-                Input.EdgeCount = Input.Graph.EdgeCount;
+                Models.GraphModel.Graph = GraphImporting.FromEdgeSet(edgeSet);
+                Input.VertexCount = Models.GraphModel.Graph.VertexSet.Count;
+                Input.EdgeCount = Models.GraphModel.Graph.EdgeCount;
             }
             catch (Exception)
             {
@@ -67,7 +67,8 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (Input.Graph != null)
+            EdgeSetControl.Document.Blocks.Clear();
+            if (Models.GraphModel.Graph != null && Models.GraphModel.Graph.EdgeCount != 0)
             {
                 ExportGraph();
             }

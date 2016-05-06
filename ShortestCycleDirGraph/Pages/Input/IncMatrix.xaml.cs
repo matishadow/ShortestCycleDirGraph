@@ -64,7 +64,7 @@ namespace ShortestCycleDirGraph.Pages.Input
         }
         private void ExportGraph()
         {
-            var incMatrix = GraphExporting.ToIncMatrix(Input.Graph);
+            var incMatrix = GraphExporting.ToIncMatrix(Models.GraphModel.Graph);
 
             int i = 0;
             foreach (StackPanel stackPanel in IncMatrixBoxes.Children)
@@ -91,15 +91,17 @@ namespace ShortestCycleDirGraph.Pages.Input
                     int j = 0;
                     foreach (TextBox textBox in stackPanel.Children)
                     {
-                        incMatrix[i, j] = sbyte.Parse(textBox.Text);
+                        if (textBox.Text == "") incMatrix[i, j] = 0;
+                        else incMatrix[i, j] = sbyte.Parse(textBox.Text);
+
                         j++;
                     }
                     i++;
                 }
 
-                Input.Graph = GraphImporting.FromIncMatrix(incMatrix);
-                Input.VertexCount = Input.Graph.VertexSet.Count;
-                Input.EdgeCount = Input.Graph.EdgeCount;
+                Models.GraphModel.Graph = GraphImporting.FromIncMatrix(incMatrix);
+                Input.VertexCount = Models.GraphModel.Graph.VertexSet.Count;
+                Input.EdgeCount = Models.GraphModel.Graph.EdgeCount;
             }
             catch (Exception)
             {
@@ -114,17 +116,23 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
+            if (Input.VertexCount == 0 || Input.EdgeCount == 0) return;
             ImportGraph();
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
             Reload();
-            if (Input.Graph != null)
+            if (Models.GraphModel.Graph != null && !GraphChanged()) 
             {
                 ExportGraph();
             }
             
+        }
+
+        private bool GraphChanged()
+        {
+            return Models.GraphModel.Graph.VertexSet.Count != Input.VertexCount;
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)

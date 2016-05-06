@@ -65,9 +65,9 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (Input.Graph == null) return;
-            TbVertex.Text = Input.Graph.VertexSet.Count.ToString();
-            TbEdge.Text = Input.Graph.EdgeCount.ToString();
+            if (Models.GraphModel.Graph == null) return;
+            TbVertex.Text = Models.GraphModel.Graph.VertexSet.Count.ToString();
+            TbEdge.Text = Models.GraphModel.Graph.EdgeCount.ToString();
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)

@@ -4,7 +4,7 @@
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
         Title="Znajdywanie najkrótszego cyklu w grafie skierowanym" IsTitleVisible="True"
         
-        ContentSource="/Pages/Home.xaml">
+        ContentSource="/Pages/Home.xaml" WindowStartupLocation="CenterScreen" Width="800" Height="700">
 
     <mui:ModernWindow.MenuLinkGroups>
         <mui:LinkGroup DisplayName="Wstęp">
@@ -22,7 +22,7 @@
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Wyświetlanie">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Wprowadzony graf" Source="/Pages/Disp/Display.xaml" />
+                <mui:Link DisplayName="" Source="/Pages/Disp/Display.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Algorytm">

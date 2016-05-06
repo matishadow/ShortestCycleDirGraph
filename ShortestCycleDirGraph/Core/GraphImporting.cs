@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using ShortestCycleDirGraph.Pages.Input;
 
 namespace ShortestCycleDirGraph.Core
 {
@@ -52,7 +53,7 @@ namespace ShortestCycleDirGraph.Core
         {
             var graph = new Graph<int>();
 
-            var edge1 = Regex.Replace(edgeSet, "\n", ""); //TODO: simplify
+            string edge1 = Regex.Replace(edgeSet, "\n", ""); //TODO: simplify
             var edges = Regex.Replace(edge1, " ", "").Split(',');
 
             foreach (string t1 in edges)
@@ -61,6 +62,15 @@ namespace ShortestCycleDirGraph.Core
                 foreach (string t in edge)
                 {
                     var v = new Vertex<int>(int.Parse(t));
+                    if (!graph.VertexSet.Contains(v))
+                        graph.VertexSet.Add(v);
+                }
+            }
+            if (graph.VertexSet.Count != Input.VertexCount)
+            {
+                for (int i = 0; i < Input.VertexCount; i++)
+                {
+                    var v = new Vertex<int>(i+1);
                     if (!graph.VertexSet.Contains(v))
                         graph.VertexSet.Add(v);
                 }

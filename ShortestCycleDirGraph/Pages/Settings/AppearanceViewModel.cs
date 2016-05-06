@@ -15,8 +15,8 @@ namespace ShortestCycleDirGraph.Pages.Settings
     public class AppearanceViewModel
         : NotifyPropertyChanged
     {
-        private const string FontSmall = "small";
-        private const string FontLarge = "large";
+        private const string FontSmall = "mała";
+        private const string FontLarge = "duża";
 
         // 9 accent colors from metro design principles
         /*private Color[] accentColors = new Color[]{

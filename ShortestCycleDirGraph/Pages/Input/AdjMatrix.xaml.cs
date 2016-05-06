@@ -79,15 +79,17 @@ namespace ShortestCycleDirGraph.Pages.Input
                     int j = 0;
                     foreach (TextBox textBox in stackPanel.Children)
                     {
-                        adjMatrix[i, j] = sbyte.Parse(textBox.Text);
+                        if (textBox.Text == "") adjMatrix[i, j] = 0;
+                        else adjMatrix[i, j] = sbyte.Parse(textBox.Text);
+
                         j++;
                     }
                     i++;
                 }
 
-                Input.Graph = GraphImporting.FromAdjMatrix(adjMatrix);
-                Input.VertexCount = Input.Graph.VertexSet.Count;
-                Input.EdgeCount = Input.Graph.EdgeCount;
+                Models.GraphModel.Graph = GraphImporting.FromAdjMatrix(adjMatrix);
+                Input.VertexCount = Models.GraphModel.Graph.VertexSet.Count;
+                Input.EdgeCount = Models.GraphModel.Graph.EdgeCount;
             }
             catch (Exception)
             {
@@ -97,7 +99,7 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         private void ExportGraph()
         {
-            var adjMatrix = GraphExporting.ToAdjMatrix(Input.Graph);
+            var adjMatrix = GraphExporting.ToAdjMatrix(Models.GraphModel.Graph);
 
             int i = 0;
             foreach (StackPanel stackPanel in AdjMatrixBoxes.Children)
@@ -119,19 +121,23 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
+            if (Input.VertexCount == 0) return;
             ImportGraph();
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (Input.Graph != null)
+            Reload();
+            if (Models.GraphModel.Graph != null && !GraphChanged())
             {
                 ExportGraph();
             }
-            else
-            {
-                Reload();
-            }
+        }
+
+        private bool GraphChanged()
+        {
+            return Models.GraphModel.Graph.VertexSet.Count != Input.VertexCount ||
+                   Models.GraphModel.Graph.EdgeCount != Input.EdgeCount;
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
