@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ShortestCycleDirGraph.Core
 {
@@ -13,13 +14,22 @@ namespace ShortestCycleDirGraph.Core
         }
 
         public int Length => Sequence.Count - 1;
-
-        // TODO: check whether switch 1 and -1
+       
         public int CompareTo(Cycle other)
         {
-            if (other.Length > Length) return 1;
-            else if (other.Length < Length) return -1;
+            if (other.Length < Length) return 1;
+            else if (other.Length > Length) return -1;
             else return 0;
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            foreach (var vertex in Sequence)
+            {
+                sb.Append(vertex.Value.ToString() + " ");
+            }
+            return sb.ToString();
         }
     }
 }

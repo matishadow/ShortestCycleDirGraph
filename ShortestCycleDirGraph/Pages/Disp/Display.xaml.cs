@@ -76,6 +76,8 @@ namespace ShortestCycleDirGraph.Pages.Disp
                 vertex.Attr.Color = grayColour;
             }
             graph.Attr.BackgroundColor = blackColour;
+           
+            //TODO: change layout
 
             renderer.Render(bitmap);
           

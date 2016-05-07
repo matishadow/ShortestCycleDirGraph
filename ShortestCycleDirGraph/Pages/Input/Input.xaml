@@ -20,7 +20,8 @@
                     <TextBlock Text="Liczba krawędzi:" RenderTransformOrigin="0.5,0.5" Height="19" Width="134" HorizontalAlignment="Left" />
                     <TextBox x:Name="TbEdge" Height="23" TextWrapping="Wrap" Width="36" HorizontalAlignment="Left" x:FieldModifier="public"  />
                 </StackPanel>
-
+                <Button x:Name="RandomGraphButton" Content="Generuj losowy graf" Width="150" HorizontalAlignment="Left" Margin="0,200,0,0" Click="RandomGraphButton_Click"/>
+                <TextBlock x:Name="RandomAlert" />
 
             </StackPanel>
         </ScrollViewer>
