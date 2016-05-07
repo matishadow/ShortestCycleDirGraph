@@ -86,6 +86,7 @@
     <Compile Include="Core\GraphExporting.cs" />
     <Compile Include="Core\GraphImporting.cs" />
     <Compile Include="Core\Matrix.cs" />
+    <Compile Include="Core\Cycle.cs" />
     <Compile Include="Core\Vertex.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
