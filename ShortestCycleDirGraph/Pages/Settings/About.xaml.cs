@@ -23,6 +23,15 @@ namespace ShortestCycleDirGraph.Pages.Settings
         public About()
         {
             InitializeComponent();
+
+            LibContent.Text =
+                "Rysowanie grafów: Microsoft Automatic Graph Layout\n" +
+                "https://github.com/Microsoft/automatic-graph-layout \n" +
+                "\r\nMotyw okienkowy: Modern UI for WPF\n" +
+                "https://github.com/firstfloorsoftware/mui";
+
+            RepContent.Text = "https://github.com/matishadow/ShortestCycleDirGraph";
+            AuthContent.Text = "Mateusz Tracz \nDominika Kucharska";
         }
     }
 }

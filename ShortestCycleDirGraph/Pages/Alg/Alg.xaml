@@ -10,7 +10,7 @@
         <ScrollViewer>
             <StackPanel MinWidth="200">
                 <TextBlock x:Name="AlgTitle" Text="Wprowadzony graf" Style="{StaticResource Heading2}" />
-                <Image x:Name="AlgImage" Width="450" Height="450" HorizontalAlignment="Left" Margin="0,20,0,0"/>
+                <Image x:Name="AlgImage" HorizontalAlignment="Left" Margin="0,20,0,0"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

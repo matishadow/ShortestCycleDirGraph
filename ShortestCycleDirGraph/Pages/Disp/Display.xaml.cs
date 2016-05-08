@@ -40,9 +40,20 @@ namespace ShortestCycleDirGraph.Pages.Disp
 
         private void DrawGraph()
         {
-            const int bitmapSize = 450;
+            const int bitmapSize = 2000;
             var blackColour = new Microsoft.Msagl.Drawing.Color(37, 37, 38);
             var grayColour = new Microsoft.Msagl.Drawing.Color(193, 193, 193);
+
+            if (string.Equals("Układ warstowy", GraphModel.SelectedSettings.Name))
+            {
+                GraphImage.Width = 500;
+                GraphImage.Height = 500;
+            }
+            else
+            {
+                GraphImage.Width = double.NaN;
+                GraphImage.Height = double.NaN;
+            }
 
             var g = Models.GraphModel.Graph;
 

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ShortestCycleDirGraph.Pages
+namespace ShortestCycleDirGraph.Pages.SummaryPages
 {
     /// <summary>
-    /// Interaction logic for Summary.xaml
+    /// Interaction logic for LitSummary.xaml
     /// </summary>
-    public partial class Summary : UserControl
+    public partial class LitSummary : UserControl
     {
-        public Summary()
+        public LitSummary()
         {
             InitializeComponent();
         }

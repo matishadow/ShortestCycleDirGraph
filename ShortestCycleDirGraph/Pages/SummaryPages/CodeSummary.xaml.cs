@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ShortestCycleDirGraph.Pages
+namespace ShortestCycleDirGraph.Pages.SummaryPages
 {
     /// <summary>
-    /// Interaction logic for Home.xaml
+    /// Interaction logic for CodeSummary.xaml
     /// </summary>
-    public partial class Home : UserControl
+    public partial class CodeSummary : UserControl
     {
-        public Home()
+        public CodeSummary()
         {
             InitializeComponent();
+
+            var uriSource = new Uri(@"/Resources/alg.bmp", UriKind.Relative);
+
+            CodeImage.Source = new BitmapImage(uriSource);
         }
+
     }
 }

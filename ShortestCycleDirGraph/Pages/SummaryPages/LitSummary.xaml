@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ShortestCycleDirGraph.Pages.Disp.Display"
+﻿<UserControl x:Class="ShortestCycleDirGraph.Pages.SummaryPages.LitSummary"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,9 +9,8 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <TextBlock x:Name="DisplayTitle" Text="Wprowadzony graf" Style="{StaticResource Heading2}" />
-                <Image x:Name="GraphImage" HorizontalAlignment="Left" Margin="0,20,0,0"/>
-
+                <TextBlock Text="Literatura" Style="{StaticResource Heading2}" />
+                <TextBlock Text="Notatki z ćwiczeń oraz wykładów z przedmiotu &quot;Grafy i sieci&quot;" Margin="0,20,0,0" FontSize="14"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

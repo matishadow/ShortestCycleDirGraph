@@ -8,8 +8,12 @@
     <Grid>
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <TextBlock Text="ABOUT" Style="{StaticResource Heading2}" />
-                <TextBlock Text="TODO: provide information about the software" Margin="0,0,0,8" TextWrapping="Wrap" />
+                <TextBlock Text="Użyte biblioteki" Style="{StaticResource Heading2}" />
+                <TextBlock x:Name="LibContent" TextWrapping="Wrap" />
+                <TextBlock Text="Repozytorium projektu" Style="{StaticResource Heading2}" Margin="0,50,0,0" />
+                <TextBlock x:Name="RepContent" TextWrapping="Wrap" />
+                <TextBlock Text="Autorzy" Style="{StaticResource Heading2}"  Margin="0,50,0,0" />
+                <TextBlock x:Name="AuthContent" TextWrapping="Wrap" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

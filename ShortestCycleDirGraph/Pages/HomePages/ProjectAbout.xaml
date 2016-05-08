@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ShortestCycleDirGraph.Pages.Summary"
+﻿<UserControl x:Class="ShortestCycleDirGraph.Pages.HomePages.ProjectAbout"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,8 +9,11 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <TextBlock Text="BASIC PAGE" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Content goes here" />
+                <TextBlock Text="Temat" Style="{StaticResource Heading1}" />
+                <TextBlock x:Name="TopicContent" Text="" FontSize="14"/>
+                <TextBlock Text=" Zespół" Style="{StaticResource Heading2}" Margin="0,40,0,0" />
+                <TextBlock x:Name="TeamContent" FontSize="14"/>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>
