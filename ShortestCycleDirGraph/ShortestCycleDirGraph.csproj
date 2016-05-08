@@ -87,6 +87,7 @@
     <Compile Include="Core\GraphImporting.cs" />
     <Compile Include="Core\Matrix.cs" />
     <Compile Include="Core\Cycle.cs" />
+    <Compile Include="Core\SettingsItem.cs" />
     <Compile Include="Core\Vertex.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -164,10 +165,17 @@
     <Compile Include="Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings\GraphLayout.xaml.cs">
+      <DependentUpon>GraphLayout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Summary.xaml.cs">
       <DependentUpon>Summary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="Pages\Settings\GraphLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Summary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

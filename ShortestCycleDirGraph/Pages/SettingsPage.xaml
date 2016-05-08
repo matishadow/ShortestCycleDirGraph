@@ -10,6 +10,7 @@
         <mui:ModernTab Layout="List" SelectedSource="/Pages/Settings/Appearance.xaml">
             <mui:ModernTab.Links>
                 <mui:Link DisplayName="Wygląd" Source="/Pages/Settings/Appearance.xaml" />
+                <mui:Link DisplayName="Układ grafu" Source="/Pages/Settings/GraphLayout.xaml" />
                 <mui:Link DisplayName="O programie" Source="/Pages/Settings/About.xaml" />
             </mui:ModernTab.Links>
         </mui:ModernTab>

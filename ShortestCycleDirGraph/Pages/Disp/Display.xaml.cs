@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using Microsoft.Msagl.Drawing;
+using ShortestCycleDirGraph.Models;
 using Color = System.Drawing.Color;
 using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
 using Image = System.Drawing.Image;
@@ -61,6 +62,8 @@ namespace ShortestCycleDirGraph.Pages.Disp
                 }
             }
 
+
+            graph.LayoutAlgorithmSettings = GraphModel.SelectedSettings.Settings;
             var renderer = new Microsoft.Msagl.GraphViewerGdi.GraphRenderer(graph);
             var bitmap = new System.Drawing.Bitmap(bitmapSize, bitmapSize);
 
