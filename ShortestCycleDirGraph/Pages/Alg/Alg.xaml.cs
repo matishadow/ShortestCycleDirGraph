@@ -121,21 +121,24 @@ namespace ShortestCycleDirGraph.Pages.Alg
 
         private void DrawResult(Cycle shortestCycle)
         {
-            int bitmapSize = 2000;
+            int bitmapSize = 1000;
             var blackColour = new Microsoft.Msagl.Drawing.Color(37, 37, 38);
             var grayColour = new Microsoft.Msagl.Drawing.Color(193, 193, 193);
             var yellowColour = new Microsoft.Msagl.Drawing.Color(0xe3, 0xc8, 0x0);
 
-            if (string.Equals("Układ warstowy", GraphModel.SelectedSettings.Name))
+            this.Dispatcher.Invoke((Action)(() =>
             {
-                AlgImage.Width = 500;
-                AlgImage.Height = 500;
-            }
-            else
-            {
-                AlgImage.Width = double.NaN;
-                AlgImage.Height = double.NaN;
-            }
+                if (string.Equals("Układ warstowy", GraphModel.SelectedSettings.Name))
+                {
+                    AlgImage.Width = 500;
+                    AlgImage.Height = 500;
+                }
+                else
+                {
+                    AlgImage.Width = double.NaN;
+                    AlgImage.Height = double.NaN;
+                }
+            }));
 
             var g = Models.GraphModel.Graph;
 
@@ -197,7 +200,11 @@ namespace ShortestCycleDirGraph.Pages.Alg
             bi.StreamSource = ms;
             bi.EndInit();
 
-            AlgImage.Source = bi;
+            bi.Freeze(); // Freeze BitmapImage to make it thread safe
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                AlgImage.Source = bi;
+            }));
         }
 
         private bool CycleContainsEdge(Cycle shortestCycle, Edge edge)

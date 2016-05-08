@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,6 +45,7 @@ namespace ShortestCycleDirGraph.Pages.Input
             {
                 AdjTitleText.Text = "Wprowadź macierz sąsiedztwa";
 
+
                 DrawTextBoxes();
             }
         }
@@ -63,7 +65,9 @@ namespace ShortestCycleDirGraph.Pages.Input
                     var tb1 = new TextBox { Width = 30, Margin = new Thickness(0, 0, 10, 0) };
                     sp.Children.Add(tb1);
                 }
+
                 AdjMatrixBoxes.Children.Add(sp);
+
             }
         }
 

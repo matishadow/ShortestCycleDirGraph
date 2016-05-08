@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using FirstFloor.ModernUI.Windows;
 using Microsoft.Msagl.Drawing;
 using ShortestCycleDirGraph.Models;
@@ -40,20 +42,23 @@ namespace ShortestCycleDirGraph.Pages.Disp
 
         private void DrawGraph()
         {
-            const int bitmapSize = 2000;
+            const int bitmapSize = 1000;
             var blackColour = new Microsoft.Msagl.Drawing.Color(37, 37, 38);
             var grayColour = new Microsoft.Msagl.Drawing.Color(193, 193, 193);
 
-            if (string.Equals("Układ warstowy", GraphModel.SelectedSettings.Name))
+            this.Dispatcher.Invoke((Action)(() =>
             {
-                GraphImage.Width = 500;
-                GraphImage.Height = 500;
-            }
-            else
-            {
-                GraphImage.Width = double.NaN;
-                GraphImage.Height = double.NaN;
-            }
+                if (string.Equals("Układ warstowy", GraphModel.SelectedSettings.Name))
+                {
+                    GraphImage.Width = 500;
+                    GraphImage.Height = 500;
+                }
+                else
+                {
+                    GraphImage.Width = double.NaN;
+                    GraphImage.Height = double.NaN;
+                }
+            }));
 
             var g = Models.GraphModel.Graph;
 
@@ -104,7 +109,12 @@ namespace ShortestCycleDirGraph.Pages.Disp
             bi.StreamSource = ms;
             bi.EndInit();
 
-            GraphImage.Source = bi;
+
+            bi.Freeze(); // Freeze BitmapImage to make it thread safe
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                GraphImage.Source = bi;
+            }));
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -123,7 +133,8 @@ namespace ShortestCycleDirGraph.Pages.Disp
             if (Models.GraphModel.Graph != null && Models.GraphModel.Graph.EdgeCount != 0)
             {
                 DisplayTitle.Text = "Wprowadzony graf";
-                DrawGraph();
+                
+                new Thread(DrawGraph).Start();
             }
             else DisplayTitle.Text = "Najpierw trzeba wprowadzić graf!";
         }
