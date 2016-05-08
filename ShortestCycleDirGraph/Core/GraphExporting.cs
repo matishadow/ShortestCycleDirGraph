@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace ShortestCycleDirGraph.Core
 {
@@ -15,7 +14,7 @@ namespace ShortestCycleDirGraph.Core
             {
                 foreach (var adjVertex in vertex.Adjacents)
                 {
-                    adjMatrix[vertex.Value-1, adjVertex.Value-1] = 1;
+                    adjMatrix[vertex.Value - 1, adjVertex.Value - 1] = 1;
                 }
             }
 
@@ -35,11 +34,11 @@ namespace ShortestCycleDirGraph.Core
             {
                 foreach (var adjVertex in vertex.Adjacents)
                 {
-                    incMatrix[vertex.Value-1, currentEdge] = -1;
-                    incMatrix[adjVertex.Value-1, currentEdge] = 1;
+                    incMatrix[vertex.Value - 1, currentEdge] = -1;
+                    incMatrix[adjVertex.Value - 1, currentEdge] = 1;
 
                     currentEdge++;
-                }   
+                }
             }
 
             return incMatrix;
@@ -59,7 +58,7 @@ namespace ShortestCycleDirGraph.Core
             }
 
 
-            return sb.ToString().Substring(0, sb.Length-2);
+            return sb.ToString().Substring(0, sb.Length - 2);
         }
     }
 }

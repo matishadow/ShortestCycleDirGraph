@@ -3,16 +3,8 @@ using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using FirstFloor.ModernUI.Windows;
 using Microsoft.Msagl.Drawing;
 using ShortestCycleDirGraph.Core;
@@ -60,7 +52,7 @@ namespace ShortestCycleDirGraph.Pages.Alg
                     }
                 }
             }
-        
+
             if (startingVertex.Parent == null) // cycle not found
             {
                 return null;
@@ -75,7 +67,7 @@ namespace ShortestCycleDirGraph.Pages.Alg
                     cycle.Sequence.Add(current);
                     current = current.Parent;
                 } while (current != startingVertex);
-                
+
 
                 cycle.Sequence.Add(startingVertex); //to end cycle
 
@@ -85,12 +77,10 @@ namespace ShortestCycleDirGraph.Pages.Alg
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-            
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
-            
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
@@ -100,33 +90,29 @@ namespace ShortestCycleDirGraph.Pages.Alg
             {
                 AlgTitle.Text = "Wynik algorytmu";
 
-                var cycles = new List<Cycle>();
-                foreach (var vertex in g.VertexSet)
-                {
-                    var cycle = FindShortestCycle(g, vertex);
-                    if (cycle != null) cycles.Add(cycle);
-                }
+                var cycles =
+                    g.VertexSet.Select(vertex => FindShortestCycle(g, vertex)).Where(cycle => cycle != null).ToList();
 
                 var shortestCycle = cycles.Min();
 
                 DrawResult(shortestCycle);
             }
-            else AlgTitle.Text = "Najpierw trzeba wprowadzić graf!";          
+            else AlgTitle.Text = "Najpierw trzeba wprowadzić graf!";
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-           
         }
 
         private void DrawResult(Cycle shortestCycle)
         {
-            int bitmapSize = 1000;
+            const int bitmapSize = 1000;
             var blackColour = new Microsoft.Msagl.Drawing.Color(37, 37, 38);
             var grayColour = new Microsoft.Msagl.Drawing.Color(193, 193, 193);
             var yellowColour = new Microsoft.Msagl.Drawing.Color(0xe3, 0xc8, 0x0);
 
-            this.Dispatcher.Invoke((Action)(() =>
+            // to be thread safe
+            this.Dispatcher.Invoke((Action) (() =>
             {
                 if (string.Equals("Układ warstowy", GraphModel.SelectedSettings.Name))
                 {
@@ -165,16 +151,17 @@ namespace ShortestCycleDirGraph.Pages.Alg
             //color nodes and edges
             foreach (var edge in graph.Edges)
             {
-                if(CycleContainsEdge(shortestCycle, edge)) // yellow shortest cycle
+                if (CycleContainsEdge(shortestCycle, edge)) // yellow shortest cycle
                 {
                     edge.Attr.Color = yellowColour;
-                }   
+                }
                 else edge.Attr.Color = grayColour;
             }
             for (int i = 0; i < g.VertexSet.Count; i++)
             {
                 var vertex = graph.FindNode(Convert.ToString(i + 1));
-                if (shortestCycle != null && shortestCycle.Sequence.Contains(new Vertex<int>(i+1))) //yellow shortest cycle
+                if (shortestCycle != null && shortestCycle.Sequence.Contains(new Vertex<int>(i + 1)))
+                    //yellow shortest cycle
                 {
                     vertex.Label.FontColor = yellowColour;
                     vertex.Attr.Color = yellowColour;
@@ -187,7 +174,6 @@ namespace ShortestCycleDirGraph.Pages.Alg
             }
             graph.Attr.BackgroundColor = blackColour;
 
-            //TODO: change layout
 
             renderer.Render(bitmap);
 
@@ -201,17 +187,15 @@ namespace ShortestCycleDirGraph.Pages.Alg
             bi.EndInit();
 
             bi.Freeze(); // Freeze BitmapImage to make it thread safe
-            this.Dispatcher.Invoke((Action)(() =>
-            {
-                AlgImage.Source = bi;
-            }));
+            this.Dispatcher.Invoke((Action) (() => { AlgImage.Source = bi; }));
         }
 
-        private bool CycleContainsEdge(Cycle shortestCycle, Edge edge)
+        private static bool CycleContainsEdge(Cycle shortestCycle, Edge edge)
         {
             if (shortestCycle == null) return false;
-            else return shortestCycle.Sequence.Contains(new Vertex<int>(int.Parse(edge.Source)))
-                && shortestCycle.Sequence.Contains(new Vertex<int>(int.Parse(edge.Target)));
+            else
+                return shortestCycle.Sequence.Contains(new Vertex<int>(int.Parse(edge.Source)))
+                       && shortestCycle.Sequence.Contains(new Vertex<int>(int.Parse(edge.Target)));
         }
     }
 }

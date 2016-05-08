@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using ShortestCycleDirGraph.Core;
 using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
@@ -49,10 +38,8 @@ namespace ShortestCycleDirGraph.Pages.Input
         }
 
 
-
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -77,7 +64,6 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-
         }
 
         private void RandomGraphButton_Click(object sender, RoutedEventArgs e)
@@ -110,7 +96,7 @@ namespace ShortestCycleDirGraph.Pages.Input
                 incMatrix[positive, i] = 1;
                 incMatrix[negative, i] = -1;
             }
-            
+
 
             Models.GraphModel.Graph = GraphImporting.FromIncMatrix(incMatrix);
             TbVertex.Text = Models.GraphModel.Graph.VertexSet.Count.ToString();

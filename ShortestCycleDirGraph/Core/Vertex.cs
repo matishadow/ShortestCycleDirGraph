@@ -8,7 +8,7 @@ namespace ShortestCycleDirGraph.Core
         public T Value { get; set; }
         public List<Vertex<T>> Adjacents { get; }
 
-        // bfs
+        // used in bfs
         public int Distance { get; set; }
         public Vertex<T> Parent { get; set; }
 

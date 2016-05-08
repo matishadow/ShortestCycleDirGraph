@@ -7,7 +7,7 @@
             int rows = m.GetLength(0);
             int columns = m.GetLength(1);
 
-            var transposed = new T[columns,rows];
+            var transposed = new T[columns, rows];
 
             for (int i = 0; i < rows; i++)
             {

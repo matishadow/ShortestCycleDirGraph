@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using ShortestCycleDirGraph.Core;
 using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
@@ -34,8 +23,10 @@ namespace ShortestCycleDirGraph.Pages.Input
         {
             IncMatrixBoxes.Children.Clear();
 
-            if (Input.VertexCount == 0 || Input.EdgeCount == 0) IncTitleText.Text = "Musisz wprowadzić liczbę wierzchołków i liczbę krawędzi!";
-            else if (Input.VertexCount < 0 || Input.EdgeCount < 0) IncTitleText.Text = "Podana liczba wierzchołków i krawędzi musi być większa od 0";
+            if (Input.VertexCount == 0 || Input.EdgeCount == 0)
+                IncTitleText.Text = "Musisz wprowadzić liczbę wierzchołków i liczbę krawędzi!";
+            else if (Input.VertexCount < 0 || Input.EdgeCount < 0)
+                IncTitleText.Text = "Podana liczba wierzchołków i krawędzi musi być większa od 0";
             else
             {
                 IncTitleText.Text = "Wprowadź macierz incydencji";
@@ -56,12 +47,13 @@ namespace ShortestCycleDirGraph.Pages.Input
 
                 for (int j = 0; j < Input.EdgeCount; j++)
                 {
-                    var tb1 = new TextBox { Width = 30, Margin = new Thickness(0, 0, 10, 0) };
+                    var tb1 = new TextBox {Width = 30, Margin = new Thickness(0, 0, 10, 0)};
                     sp.Children.Add(tb1);
                 }
                 IncMatrixBoxes.Children.Add(sp);
             }
         }
+
         private void ExportGraph()
         {
             var incMatrix = GraphExporting.ToIncMatrix(Models.GraphModel.Graph);
@@ -111,7 +103,6 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-         
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -123,11 +114,10 @@ namespace ShortestCycleDirGraph.Pages.Input
         public void OnNavigatedTo(NavigationEventArgs e)
         {
             Reload();
-            if (Models.GraphModel.Graph != null && !GraphChanged()) 
+            if (Models.GraphModel.Graph != null && !GraphChanged())
             {
                 ExportGraph();
             }
-            
         }
 
         private bool GraphChanged()
@@ -137,7 +127,6 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-         
         }
     }
 }

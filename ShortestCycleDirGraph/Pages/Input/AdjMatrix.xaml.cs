@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using ShortestCycleDirGraph.Core;
 using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
@@ -26,13 +14,9 @@ namespace ShortestCycleDirGraph.Pages.Input
     /// </summary>
     public partial class AdjMatrix : UserControl, IContent
     {
-        
         public AdjMatrix()
         {
             InitializeComponent();
-
-
-            
         }
 
         public void Reload()
@@ -62,12 +46,11 @@ namespace ShortestCycleDirGraph.Pages.Input
 
                 for (int j = 0; j < Input.VertexCount; j++)
                 {
-                    var tb1 = new TextBox { Width = 30, Margin = new Thickness(0, 0, 10, 0) };
+                    var tb1 = new TextBox {Width = 30, Margin = new Thickness(0, 0, 10, 0)};
                     sp.Children.Add(tb1);
                 }
 
                 AdjMatrixBoxes.Children.Add(sp);
-
             }
         }
 
@@ -111,7 +94,7 @@ namespace ShortestCycleDirGraph.Pages.Input
                 int j = 0;
                 foreach (TextBox textBox in stackPanel.Children)
                 {
-                    textBox.Text = Convert.ToString(adjMatrix[i, j]);                   
+                    textBox.Text = Convert.ToString(adjMatrix[i, j]);
                     j++;
                 }
                 i++;
@@ -120,7 +103,6 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-            
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -138,7 +120,7 @@ namespace ShortestCycleDirGraph.Pages.Input
             }
         }
 
-        private bool GraphChanged()
+        private static bool GraphChanged()
         {
             return Models.GraphModel.Graph.VertexSet.Count != Input.VertexCount ||
                    Models.GraphModel.Graph.EdgeCount != Input.EdgeCount;
@@ -146,7 +128,6 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            
         }
     }
 }

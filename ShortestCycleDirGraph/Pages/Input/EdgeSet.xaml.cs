@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using ShortestCycleDirGraph.Core;
 using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
@@ -43,7 +32,8 @@ namespace ShortestCycleDirGraph.Pages.Input
         {
             try
             {
-                string edgeSet = new TextRange(EdgeSetControl.Document.ContentStart, EdgeSetControl.Document.ContentEnd).Text;
+                string edgeSet =
+                    new TextRange(EdgeSetControl.Document.ContentStart, EdgeSetControl.Document.ContentEnd).Text;
 
                 Models.GraphModel.Graph = GraphImporting.FromEdgeSet(edgeSet);
                 Input.VertexCount = Models.GraphModel.Graph.VertexSet.Count;
@@ -57,7 +47,6 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-            
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -76,7 +65,6 @@ namespace ShortestCycleDirGraph.Pages.Input
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            
         }
     }
 }

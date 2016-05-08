@@ -1,28 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using FirstFloor.ModernUI.Windows;
 using Microsoft.Msagl.Drawing;
 using ShortestCycleDirGraph.Models;
-using Color = System.Drawing.Color;
 using FragmentNavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs;
-using Image = System.Drawing.Image;
 using NavigatingCancelEventArgs = FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs;
 using NavigationEventArgs = FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs;
 
@@ -36,8 +21,6 @@ namespace ShortestCycleDirGraph.Pages.Disp
         public Display()
         {
             InitializeComponent();
-
-
         }
 
         private void DrawGraph()
@@ -46,7 +29,8 @@ namespace ShortestCycleDirGraph.Pages.Disp
             var blackColour = new Microsoft.Msagl.Drawing.Color(37, 37, 38);
             var grayColour = new Microsoft.Msagl.Drawing.Color(193, 193, 193);
 
-            this.Dispatcher.Invoke((Action)(() =>
+            // needed when using threads
+            this.Dispatcher.Invoke((Action) (() =>
             {
                 if (string.Equals("Układ warstowy", GraphModel.SelectedSettings.Name))
                 {
@@ -95,11 +79,10 @@ namespace ShortestCycleDirGraph.Pages.Disp
                 vertex.Attr.Color = grayColour;
             }
             graph.Attr.BackgroundColor = blackColour;
-           
-            //TODO: change layout
+
 
             renderer.Render(bitmap);
-          
+
             // putting image shenanigans
             var ms = new MemoryStream();
             bitmap.Save(ms, ImageFormat.Png);
@@ -111,20 +94,15 @@ namespace ShortestCycleDirGraph.Pages.Disp
 
 
             bi.Freeze(); // Freeze BitmapImage to make it thread safe
-            this.Dispatcher.Invoke((Action)(() =>
-            {
-                GraphImage.Source = bi;
-            }));
+            this.Dispatcher.Invoke((Action) (() => { GraphImage.Source = bi; }));
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-           
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
-           
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
@@ -133,7 +111,7 @@ namespace ShortestCycleDirGraph.Pages.Disp
             if (Models.GraphModel.Graph != null && Models.GraphModel.Graph.EdgeCount != 0)
             {
                 DisplayTitle.Text = "Wprowadzony graf";
-                
+
                 new Thread(DrawGraph).Start();
             }
             else DisplayTitle.Text = "Najpierw trzeba wprowadzić graf!";
@@ -141,7 +119,6 @@ namespace ShortestCycleDirGraph.Pages.Disp
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            
         }
     }
 }

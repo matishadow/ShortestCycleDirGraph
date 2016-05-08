@@ -13,7 +13,10 @@ namespace ShortestCycleDirGraph.Core
 
             int size = adjMatrix.GetLength(0);
 
-            for (int i = 0; i < size; i++) { graph.VertexSet.Add(new Vertex<int>(i + 1)); }
+            for (int i = 0; i < size; i++)
+            {
+                graph.VertexSet.Add(new Vertex<int>(i + 1));
+            }
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -31,7 +34,10 @@ namespace ShortestCycleDirGraph.Core
             if (!Matrix<int>.CheckValidIncMatrix(incMatrix)) incMatrix = Matrix<sbyte>.Transpose(incMatrix);
 
             var graph = new Graph<int>();
-            for (int i = 0; i < incMatrix.GetLength(0); i++) { graph.VertexSet.Add(new Vertex<int>(i + 1)); }
+            for (int i = 0; i < incMatrix.GetLength(0); i++)
+            {
+                graph.VertexSet.Add(new Vertex<int>(i + 1));
+            }
 
             for (int i = 0; i < incMatrix.GetLength(1); i++)
             {
@@ -70,7 +76,7 @@ namespace ShortestCycleDirGraph.Core
             {
                 for (int i = 0; i < Input.VertexCount; i++)
                 {
-                    var v = new Vertex<int>(i+1);
+                    var v = new Vertex<int>(i + 1);
                     if (!graph.VertexSet.Contains(v))
                         graph.VertexSet.Add(v);
                 }
